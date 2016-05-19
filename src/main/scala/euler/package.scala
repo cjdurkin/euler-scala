@@ -1,0 +1,23 @@
+import Math.sqrt
+
+package object euler {
+  def fib(a: Long = 1, b: Long = 1): Stream[Long] = a #:: fib(b, a + b)
+
+  def factor(a: Long): Stream[Long] = {
+    firstFactor(a) match {
+      case Some(f) => f #:: factor(a / f)
+      case None => a #:: Stream.empty
+    }
+  }
+
+  def firstFactor(a: Long): Option[Long] = {
+    (2L to sqrt(a).toLong).find(a % _ == 0)
+  }
+
+  def isPrime(a: Long): Boolean = {
+    (2L to sqrt(a).toLong).find(a % _ == 0) match {
+      case Some(x) => false
+      case None => true
+    }
+  }
+}
