@@ -20,4 +20,8 @@ package object euler {
       case None => true
     }
   }
+
+  def isPalindrome(a: Int): Boolean = {
+    a.toString.reverse == a.toString
+  }
 }
