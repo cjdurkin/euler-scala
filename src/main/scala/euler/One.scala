@@ -6,18 +6,7 @@ class One {
 }
 
 object One {
-  def ismult(num: Int, divisors: Seq[Int]): Boolean = {
-    for (c <- divisors) {
-      if (num % c == 0) {
-        return true
-      }
-    }
-    false
-  }
+  def isMult(num: Int, divisors: Seq[Int]): Boolean = divisors.exists(num % _ == 0)
 
-  def multiples(limit: Int, numbers: Seq[Int]) = {
-    for (c <- 1 until limit if ismult(c, numbers)) yield {
-      c
-    }
-  }
+  def multiples(limit: Int, numbers: Seq[Int]) = (1 until limit).filter(isMult(_, numbers))
 }

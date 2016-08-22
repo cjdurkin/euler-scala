@@ -10,18 +10,9 @@ package object euler {
     }
   }
 
-  def firstFactor(a: Long): Option[Long] = {
-    (2L to sqrt(a).toLong).find(a % _ == 0)
-  }
+  def firstFactor(a: Long): Option[Long] = (2L to sqrt(a).toLong).find(a % _ == 0)
 
-  def isPrime(a: Long): Boolean = {
-    (2L to sqrt(a).toLong).find(a % _ == 0) match {
-      case Some(x) => false
-      case None => true
-    }
-  }
+  def isPrime(a: Long): Boolean = !(2L to sqrt(a).toLong).exists(a % _ == 0)
 
-  def isPalindrome(a: Int): Boolean = {
-    a.toString.reverse == a.toString
-  }
+  def isPalindrome(a: Int): Boolean = a.toString.reverse == a.toString
 }
