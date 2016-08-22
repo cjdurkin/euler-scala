@@ -15,4 +15,6 @@ package object euler {
   def isPrime(a: Long): Boolean = !(2L to sqrt(a).toLong).exists(a % _ == 0)
 
   def isPalindrome(a: Int): Boolean = a.toString.reverse == a.toString
+
+  def hasAllDivisors(a: Int, divisors: Seq[Int]): Boolean = !divisors.exists(a % _ != 0)
 }
