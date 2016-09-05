@@ -1,6 +1,12 @@
-import Math.sqrt
+import java.lang.Math.sqrt
+
+import scala.math._
 
 package object euler {
+  def isMult(num: Int, divisors: Seq[Int]): Boolean = divisors.exists(num % _ == 0)
+
+  def multiples(limit: Int, numbers: Seq[Int]) = (1 until limit).filter(isMult(_, numbers))
+
   def fib(a: Long = 1, b: Long = 1): Stream[Long] = a #:: fib(b, a + b)
 
   def factor(a: Long): Stream[Long] = {
@@ -17,4 +23,19 @@ package object euler {
   def isPalindrome(a: Int): Boolean = a.toString.reverse == a.toString
 
   def hasAllDivisors(a: Int, divisors: Seq[Int]): Boolean = !divisors.exists(a % _ != 0)
+
+  def palinProduct(lower: Int, upper: Int): Int = {
+    val loop = for {a <- lower to upper
+                    b <- lower to upper
+                    c = a * b
+                    if isPalindrome(c)
+    } yield c
+    loop.max
+  }
+
+  def sumSquareDiff(stop: Long, start: Long = 1): Long = {
+    val sumSquares = (start to stop).map(pow(_, 2).toLong).sum
+    val squareSum = pow((start to stop).sum, 2).toLong
+    squareSum - sumSquares
+  }
 }
