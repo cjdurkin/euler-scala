@@ -22,8 +22,6 @@ package object euler {
 
   def isPalindrome(a: Int): Boolean = a.toString.reverse == a.toString
 
-  def hasAllDivisors(a: Int, divisors: Seq[Int]): Boolean = !divisors.exists(a % _ != 0)
-
   def palinProduct(lower: Int, upper: Int): Int = {
     val loop = for {a <- lower to upper
                     b <- lower to upper
@@ -31,6 +29,13 @@ package object euler {
                     if isPalindrome(c)
     } yield c
     loop.max
+  }
+
+  def hasAllDivisors(a: Int, divisors: Seq[Int]): Boolean = a != 0 && !divisors.exists(a % _ != 0)
+
+  def smallestMultiple(a: Int): Int = {
+    val range = 1 to a
+    Stream.from(0, a).find(hasAllDivisors(_, range)).get
   }
 
   def sumSquareDiff(stop: Long, start: Long = 1): Long = {
