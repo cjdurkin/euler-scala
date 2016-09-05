@@ -3,6 +3,10 @@ import java.lang.Math.sqrt
 import scala.math._
 
 package object euler {
+  def gcd(a: Long, b: Long): Long = if (b == 0) a else gcd(b, a % b)
+
+  def lcm(a: Long, b: Long): Long = a * b / gcd(a, b)
+
   def isMult(num: Int, divisors: Seq[Int]): Boolean = divisors.exists(num % _ == 0)
 
   def multiples(limit: Int, numbers: Seq[Int]) = (1 until limit).filter(isMult(_, numbers))
@@ -31,12 +35,9 @@ package object euler {
     loop.max
   }
 
-  def hasAllDivisors(a: Int, divisors: Seq[Int]): Boolean = a != 0 && !divisors.exists(a % _ != 0)
+  def hasAllDivisors(a: Int, divisors: Seq[Int]): Boolean = !divisors.exists(a % _ != 0)
 
-  def smallestMultiple(a: Int): Int = {
-    val range = 1 to a
-    Stream.from(0, a).find(hasAllDivisors(_, range)).get
-  }
+  def smallestMultiple(a: Long): Long = (1L to a).reduce(lcm(_, _))
 
   def sumSquareDiff(stop: Long, start: Long = 1): Long = {
     val sumSquares = (start to stop).map(pow(_, 2).toLong).sum
