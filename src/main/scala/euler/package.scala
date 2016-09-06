@@ -9,7 +9,12 @@ package object euler {
 
   def isMult(num: Int, divisors: Seq[Int]): Boolean = divisors.exists(num % _ == 0)
 
-  def multiples(limit: Int, numbers: Seq[Int]) = (1 until limit).filter(isMult(_, numbers))
+  def multiples(limit: Int, numbers: Seq[Int]): Int = (1 until limit).filter(isMult(_, numbers)).sum
+
+  def multiples2(limit: Int, numbers: Seq[Int]): Int = {
+    val streams = for (n <- numbers) yield n.until(limit, n)
+    streams.foldLeft(Stream.empty[Int])(_ ++ _).distinct.sum
+  }
 
   def fib(a: Long = 1, b: Long = 1): Stream[Long] = a #:: fib(b, a + b)
 

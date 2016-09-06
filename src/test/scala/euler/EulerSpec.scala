@@ -6,10 +6,10 @@ import org.scalatest.{Matchers, WordSpec}
 class EulerSpec extends WordSpec with Matchers {
   "Problem one" should {
     "solve the example" in {
-      multiples(10, Seq(3, 5)).sum shouldEqual 23
+      multiples(10, Seq(3, 5)) shouldEqual 23
     }
     "solve the problem" in {
-      multiples(1000, Seq(3, 5)).sum shouldEqual 233168
+      multiples(1000, Seq(3, 5)) shouldEqual 233168
     }
   }
   "Problem two" should {
