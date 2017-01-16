@@ -49,4 +49,17 @@ package object euler {
     val squareSum = pow((start to stop).sum, 2).toLong
     squareSum - sumSquares
   }
+
+  def countUp(start: Int, step: Int): Stream[Int] = start #:: countUp(start + step, step)
+
+  def candidatePrimes: Stream[Int] = {
+    def cPrime(n: Int): Stream[Int] = n #:: (n + 2) #:: (n + 6) #:: (n + 8) #:: cPrime(n + 10)
+    2 #:: 3 #:: 5 #:: 7 #:: cPrime(11)
+  }
+
+  def primes: Stream[Int] = candidatePrimes.filter(isPrime(_))
+
+  def nthPrime(n: Int): Int = {
+    primes.drop(n - 1).head
+  }
 }

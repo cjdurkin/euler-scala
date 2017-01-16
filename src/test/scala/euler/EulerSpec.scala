@@ -64,4 +64,12 @@ class EulerSpec extends WordSpec with Matchers {
       sumSquareDiff(100) shouldEqual 25164150
     }
   }
+  "Problem seven" should {
+    "solve the example" in {
+      nthPrime(6) shouldEqual 13
+    }
+    "solve the problem" in {
+      nthPrime(10001) shouldEqual 104743
+    }
+  }
 }
