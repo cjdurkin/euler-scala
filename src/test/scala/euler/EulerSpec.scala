@@ -25,11 +25,11 @@ class EulerSpec extends WordSpec with Matchers {
       isPrime(33) shouldBe false
     }
     "factor numbers" in {
-      factor(24).toSeq shouldEqual Seq(2, 2, 2, 3)
-      factor(17).toSeq shouldEqual Seq(17)
+      factor(24) shouldEqual Seq(2, 2, 2, 3)
+      factor(17) shouldEqual Seq(17)
     }
     "solve the example" in {
-      factor(13195).toSeq shouldEqual Seq(5, 7, 13, 29)
+      factor(13195) shouldEqual Seq(5, 7, 13, 29)
     }
     "solve the problem" in {
       factor(600851475143L).max shouldEqual 6857
@@ -42,10 +42,10 @@ class EulerSpec extends WordSpec with Matchers {
       isPalindrome(3434) shouldBe false
     }
     "solve the example" in {
-      palinProduct(10, 99) shouldBe 9009
+      palindromeProduct(10, 99) shouldBe 9009
     }
     "solve the problem" in {
-      palinProduct(100, 999) shouldBe 906609
+      palindromeProduct(100, 999) shouldBe 906609
     }
   }
   "Problem five" should {
