@@ -3,7 +3,7 @@ package euler
 import org.scalatest.{Matchers, WordSpec}
 
 
-class EulerSpec extends WordSpec with Matchers {
+class EulerSpec extends WordSpec with Matchers with ProblemFixture {
   "Problem one" should {
     "solve the example" in {
       multiples(10, Seq(3, 5)) shouldEqual 23
@@ -70,6 +70,20 @@ class EulerSpec extends WordSpec with Matchers {
     }
     "solve the problem" in {
       nthPrime(10001) shouldEqual 104743
+    }
+  }
+  "Problem eight" should {
+    "solve the example" in {
+      digitsMaxProduct(problem8, 4) shouldEqual 5832L
+    }
+    "solve the problem" in {
+      digitsMaxProduct(problem8, 13) shouldEqual 23514624000L
+    }
+  }
+  "Problem nine" should {
+    "solve the problem" in {
+      val triple = pythagoreanTriplets(999).find(_.sum == 1000)
+      triple.get.product shouldEqual 31875000
     }
   }
 }

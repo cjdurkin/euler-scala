@@ -63,4 +63,30 @@ package object euler {
   def nthPrime(n: Int): Int = {
     primes.drop(n - 1).head
   }
+
+  def digitsMaxProduct(largeNumber: String, digits: Int): Long = {
+    require(largeNumber.length >= digits, "not enough digits")
+    def dmp(n: String, d: Int): Stream[Long] = {
+      if (n.length < d) {
+        Stream.empty[Long]
+      } else {
+        val headProduct = n.take(d).map(_.toString.toLong).product
+        headProduct #:: dmp(n.substring(1), d)
+      }
+    }
+    dmp(largeNumber, digits).max
+  }
+
+  case class Triple(a: Int, b: Int, c: Int) extends Iterable[Int] {
+    override def iterator: Iterator[Int] = Seq(a, b, c).iterator
+  }
+
+  def pythagoreanTriplets(max: Int): Seq[Triple] = {
+    for {
+      a <- 1 to max
+      b <- 1 to max
+      c = sqrt(a * a + b * b)
+      if c.isWhole
+    } yield Triple(a, b, c.toInt)
+  }
 }
