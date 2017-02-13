@@ -1,7 +1,9 @@
 package euler
 
+import euler.Factoring._
+import euler.Primes._
+import euler.Sequences._
 import org.scalatest.{Matchers, WordSpec}
-
 
 class EulerSpec extends WordSpec with Matchers with ProblemFixture {
   "Problem one" should {
@@ -18,16 +20,6 @@ class EulerSpec extends WordSpec with Matchers with ProblemFixture {
     }
   }
   "Problem three" should {
-    "identify primes" in {
-      isPrime(2) shouldBe true
-      isPrime(24) shouldBe false
-      isPrime(31) shouldBe true
-      isPrime(33) shouldBe false
-    }
-    "factor numbers" in {
-      factor(24) shouldEqual Seq(2, 2, 2, 3)
-      factor(17) shouldEqual Seq(17)
-    }
     "solve the example" in {
       factor(13195) shouldEqual Seq(5, 7, 13, 29)
     }
@@ -73,6 +65,9 @@ class EulerSpec extends WordSpec with Matchers with ProblemFixture {
     }
   }
   "Problem eight" should {
+    "not allow bad input" in {
+      a [java.lang.IllegalArgumentException] should be thrownBy digitsMaxProduct("123", 5)
+    }
     "solve the example" in {
       digitsMaxProduct(problem8, 4) shouldEqual 5832L
     }
